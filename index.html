@@ -292,7 +292,7 @@
     .social-icon-btn svg { width: 17px; height: 17px; }
 
     /* ── CONTACT ───────────────────────── */
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .contact-grid { max-width: 560px; }
     .contact-left h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 400; color: var(--heading); margin-bottom: 0.85rem; line-height: 1.3; }
     .contact-left p { font-size: 0.85rem; color: var(--muted); line-height: 1.85; margin-bottom: 2rem; }
     .contact-rows { display: flex; flex-direction: column; }
@@ -307,18 +307,6 @@
     .contact-row-left svg { flex-shrink: 0; }
     .contact-row span.handle { font-size: 0.7rem; color: var(--muted); }
     .contact-row:hover span.handle { color: var(--accent); opacity: 0.7; }
-    .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
-    .field { display: flex; flex-direction: column; gap: 0.4rem; }
-    .field label { font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
-    .field input, .field textarea {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 2px;
-      color: var(--heading); font-family: 'Instrument Sans', sans-serif;
-      font-size: 0.85rem; font-weight: 300; padding: 0.7rem 1rem; outline: none; resize: none;
-      transition: border-color 0.2s;
-    }
-    .field input:focus, .field textarea:focus { border-color: var(--accent); }
-    .field textarea { min-height: 110px; }
-
     /* ── FOOTER ────────────────────────── */
     footer {
       max-width: 1100px; margin: 0 auto; padding: 2.5rem 4.5rem;
@@ -368,7 +356,7 @@
       .project-row { grid-template-columns: 1fr auto; gap: 1rem; }
       .proj-num, .proj-desc { display: none; }
       .exp-item, .edu-item { grid-template-columns: 1fr; gap: 0.5rem; }
-      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .about-aside { position: static; }
       .skills-grid-section { grid-template-columns: 1fr 1fr; }
       .cert-item { grid-template-columns: 1fr; gap: 0.5rem; }
@@ -459,7 +447,7 @@
   <section id="hero">
     <div class="hero-left">
       <div class="hero-eyebrow">Software Engineer</div>
-      <h2>Building<br/><em>robust and scalable</em><br/>software.</h2>
+      <h2>I like software<br/>that <em>doesn't fall</em><br/>over.</h2>
       <p class="hero-desc">
         Full-stack engineer with 5+ years across fintech and enterprise software. I care about clean architecture, developer experience, and shipping things that last. Currently open to new opportunities.
       </p>
@@ -470,10 +458,6 @@
     </div>
     <div class="hero-right">
       <div class="stat-panel">
-        <div class="stat-row">
-          <span class="stat-key">Based in</span>
-          <span class="stat-val">Philadelphia, PA</span>
-        </div>
           <div class="stat-row">
               <span class="stat-key">Experience</span>
               <span class="stat-val">5+ years</span>
@@ -496,42 +480,42 @@
   <section id="projects">
     <div class="section-wrap">
       <div class="section-header reveal">
-        <h2>Selected Work</h2>
+        <h2>Projects</h2>
       </div>
       <div class="projects-list reveal">
-        <a href="#" class="project-row">
+        <a href="https://github.com/citrix/terraform-provider-citrix" target="_blank" class="project-row">
           <span class="proj-num">01</span>
-          <span class="proj-name">Project Alpha</span>
-          <span class="proj-desc">A concise description of what this does and the problem it solves.</span>
+          <span class="proj-name">Terraform Provider for Citrix</span>
+          <span class="proj-desc">Automate provisioning of Citrix infrastructure resources using the custom citrix-terraform-provider.</span>
           <div style="display:flex;align-items:center;gap:0.5rem;">
-            <div class="proj-tags"><span class="tag">React</span><span class="tag">Node.js</span></div>
+            <div class="proj-tags"><span class="tag">Go</span><span class="tag">Terraform</span><span class="tag">TeamCity</span></div>
             <span class="proj-arrow">↗</span>
           </div>
         </a>
-        <a href="#" class="project-row">
+        <a href="https://huggingface.co/spaces/sid189/career_conversations" target="_blank" class="project-row">
           <span class="proj-num">02</span>
-          <span class="proj-name">Project Beta</span>
-          <span class="proj-desc">What was technically interesting? What was the outcome or impact?</span>
+          <span class="proj-name">Career Conversation Agent</span>
+          <span class="proj-desc">AI agent that answers questions on my work experience, skills, projects, and education via a Gradio chat UI on Hugging Face Spaces, with Pushover alerts when a visitor leaves contact info.</span>
           <div style="display:flex;align-items:center;gap:0.5rem;">
-            <div class="proj-tags"><span class="tag">TypeScript</span><span class="tag">Next.js</span></div>
+            <div class="proj-tags"><span class="tag">Python</span><span class="tag">OpenAI</span><span class="tag">Gradio</span></div>
             <span class="proj-arrow">↗</span>
           </div>
         </a>
-        <a href="#" class="project-row">
+        <a href="https://github.com/sid189/wc-predictor" target="_blank" class="project-row">
           <span class="proj-num">03</span>
-          <span class="proj-name">Project Gamma</span>
-          <span class="proj-desc">Keep it punchy. One strong sentence beats three vague ones.</span>
+          <span class="proj-name">World Cup Predictor App</span>
+          <span class="proj-desc">A fun and private full-stack World Cup predictions app for a group of friends, with a shared leaderboard.</span>
           <div style="display:flex;align-items:center;gap:0.5rem;">
-            <div class="proj-tags"><span class="tag">Python</span><span class="tag">FastAPI</span></div>
+            <div class="proj-tags"><span class="tag">Next.js</span><span class="tag">PostgreSQL</span><span class="tag">Supabase</span></div>
             <span class="proj-arrow">↗</span>
           </div>
         </a>
-        <a href="#" class="project-row">
+        <a href="https://github.com/sid189/premier-league-26-27-table-predictions" target="_blank" class="project-row">
           <span class="proj-num">04</span>
-          <span class="proj-name">Project Delta</span>
-          <span class="proj-desc">What did you learn? What would you do differently?</span>
+          <span class="proj-name">Premier League Points Table Predictor</span>
+          <span class="proj-desc">Predicts the 2026/27 Premier League table statistically, and reports probabilities.</span>
           <div style="display:flex;align-items:center;gap:0.5rem;">
-            <div class="proj-tags"><span class="tag">Go</span><span class="tag">Docker</span></div>
+            <div class="proj-tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Monte Carlo</span></div>
             <span class="proj-arrow">↗</span>
           </div>
         </a>
@@ -808,9 +792,7 @@
           </div>
         </div>
         <div class="about-body reveal">
-          <p>I'm a software engineer with <strong>5+ years of industrial experience</strong> building backend, full-stack applications. I care about the craft — clean architecture, readable code, and interfaces that feel considered.</p>
-          <p>My background is in <strong>Backend, Full Stack, Cloud and Infrastructure</strong>. I've worked across the full stack, from database schema design and API architecture to the fine details of UI and interaction.</p>
-          <p>When I'm not engineering, I'm <strong>either photographing, running, or watching some sport. Or just taking a nap.</strong>. I believe the best engineers are curious, patient, and always reading.</p>
+          <p>I'm a software engineer who spends most days on backend, cloud, and infrastructure — and most evenings running, taking photos, or half-watching a game while reading something unrelated to code. <strong>5+ years across fintech and enterprise software</strong> taught me that the boring parts (schema design, pipeline reliability, test coverage) are usually what makes the interesting parts possible. I like software that's easy to reason about six months later — including my own.</p>
         </div>
       </div>
     </div>
@@ -825,7 +807,7 @@
       <div class="contact-grid">
         <div class="contact-left reveal">
           <h3>Let's build something together.</h3>
-          <p>Open to full-time roles, freelance projects, and interesting conversations. Reach out directly or use the form.</p>
+          <p>Open to full-time roles, freelance projects, and interesting conversations. Reach out directly using any of the channels below.</p>
           <div class="contact-rows">
             <a href="mailto:sid.s.deshpande@gmail.com" class="contact-row">
               <span class="contact-row-left">
@@ -854,18 +836,17 @@
             <a class="social-icon-btn email-link" href="#" title="Email">
               <svg width="17" height="17"><use href="#ico-email"/></svg>
             </a>
-            <a href="https://github.com/yourusername" target="_blank" class="social-icon-btn" title="GitHub">
+            <a href="https://github.com/sid189" target="_blank" class="social-icon-btn" title="GitHub">
               <svg width="17" height="17"><use href="#ico-github"/></svg>
             </a>
-            <a href="https://linkedin.com/in/yourusername" target="_blank" class="social-icon-btn" title="LinkedIn">
+            <a href="https://linkedin.com/in/deshpande-siddharth" target="_blank" class="social-icon-btn" title="LinkedIn">
               <svg width="17" height="17"><use href="#ico-linkedin"/></svg>
             </a>
-            <a href="your-resume.pdf" download class="social-icon-btn" title="Resume">
+            <a href="https://drive.google.com/file/d/1y_Jzoi7yFPWL5skX_qJyMmV3vA-QYvHI/view?usp=drive_link" download class="social-icon-btn" title="Resume">
               <svg width="17" height="17"><use href="#ico-resume"/></svg>
             </a>
           </div>
         </div>
-        
       </div>
     </div>
   </section>
@@ -905,7 +886,7 @@
 
   <script>
     // ── Email protection (set your real email here — never in HTML)
-    const EMAIL = ['you', 'email.com'].join('@');
+    const EMAIL = ['sid.s.deshpande', 'gmail.com'].join('@');
     document.querySelectorAll('.email-link').forEach(el => el.href = 'mailto:' + EMAIL);
     
     // Cursor
