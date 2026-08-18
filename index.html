@@ -6,10 +6,18 @@
   <title>Portfolio — Siddharth Deshpande</title>
   <meta name="description" content="Software Engineer — Backend, Full-stack, 5+ years experience in cloud, fintech and enterprise software."/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <script>
+    (function () {
+      var stored = localStorage.getItem('theme');
+      var theme = stored || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    })();
+  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
+      --bg-rgb:       12,13,15;
       --bg:           #0c0d0f;
       --surface:      #131416;
       --border:       #222426;
@@ -17,11 +25,31 @@
       --text:         #b8bcc2;
       --muted:        #56595f;
       --heading:      #e8eaed;
+      --accent-rgb:   212,168,90;
       --accent:       #d4a85a;
-      --accent-dim:   rgba(212,168,90,0.12);
+      --accent-hover: #e0ba70;
+      --accent-dim:   rgba(var(--accent-rgb),0.12);
+      color-scheme: dark;
+    }
+
+    :root[data-theme="light"] {
+      --bg-rgb:       250,247,242;
+      --bg:           #faf7f2;
+      --surface:      #f1ece3;
+      --border:       #e5ddd0;
+      --border-light: #d6c9b4;
+      --text:         #57524a;
+      --muted:        #9c9284;
+      --heading:      #29241d;
+      --accent-rgb:   143,54,70;
+      --accent:       #8f3646;
+      --accent-hover: #a84457;
+      --accent-dim:   rgba(143,54,70,0.10);
+      color-scheme: light;
     }
 
     html { scroll-behavior: smooth; }
+    body { transition: background 0.25s, color 0.25s; }
 
     body {
       background: var(--bg);
@@ -41,7 +69,7 @@
     }
     .cursor-ring {
       width: 28px; height: 28px;
-      border: 1px solid rgba(212,168,90,0.3); border-radius: 50%;
+      border: 1px solid rgba(var(--accent-rgb),0.3); border-radius: 50%;
       position: fixed; pointer-events: none; z-index: 9998;
       transform: translate(-50%,-50%);
     }
@@ -62,7 +90,7 @@
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.25rem 4.5rem;
       border-bottom: 1px solid var(--border);
-      background: rgba(12,13,15,0.92);
+      background: rgba(var(--bg-rgb),0.92);
       backdrop-filter: blur(16px);
     }
     .nav-logo {
@@ -90,11 +118,11 @@
       font-family: 'Instrument Sans', sans-serif;
       font-size: 0.7rem; font-weight: 500; color: var(--accent);
       text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase;
-      border: 1px solid rgba(212,168,90,0.4); padding: 0.4rem 1rem;
+      border: 1px solid rgba(var(--accent-rgb),0.4); padding: 0.4rem 1rem;
       border-radius: 2px; cursor: none;
       transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
     }
-    .nav-cv:hover { background: var(--accent-dim); border-color: var(--accent); box-shadow: 0 0 16px rgba(212,168,90,0.1); }
+    .nav-cv:hover { background: var(--accent-dim); border-color: var(--accent); box-shadow: 0 0 16px rgba(var(--accent-rgb),0.1); }
     .nav-cv svg { width: 11px; height: 11px; flex-shrink: 0; }
     .nav-hamburger {
       display: none; flex-direction: column; gap: 5px;
@@ -103,11 +131,32 @@
     .nav-hamburger span { display: block; width: 22px; height: 1px; background: var(--muted); transition: background 0.2s; }
     .nav-hamburger:hover span { background: var(--accent); }
 
+    /* ── THEME TOGGLE ──────────────────── */
+    .theme-toggle {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      width: 32px; height: 32px; flex-shrink: 0;
+      background: none; border: 1px solid var(--border); border-radius: 2px;
+      color: var(--muted); cursor: none; padding: 0;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+    .theme-toggle svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .theme-toggle .icon-moon { display: none; }
+    :root[data-theme="light"] .theme-toggle .icon-sun { display: none; }
+    :root[data-theme="light"] .theme-toggle .icon-moon { display: block; }
+    .theme-toggle span { display: none; }
+    .mobile-menu .theme-toggle {
+      width: auto; height: auto; border: none; padding: 0; justify-content: flex-start;
+      font-size: 0.8rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .mobile-menu .theme-toggle:hover { color: var(--accent); }
+    .mobile-menu .theme-toggle span { display: inline; }
+
     /* ── MOBILE MENU ───────────────────── */
     .mobile-menu {
       display: none; position: fixed;
       top: 57px; left: 0; right: 0; z-index: 99;
-      background: rgba(12,13,15,0.98); backdrop-filter: blur(16px);
+      background: rgba(var(--bg-rgb),0.98); backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
       flex-direction: column; padding: 1.5rem 2rem; gap: 1.1rem;
     }
@@ -150,13 +199,13 @@
     }
     .btn-primary {
       display: inline-flex; align-items: center; gap: 0.4rem;
-      background: var(--accent); color: #0c0d0f;
+      background: var(--accent); color: var(--bg);
       font-family: 'Instrument Sans', sans-serif;
       font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
       text-decoration: none; padding: 0.7rem 1.6rem; border-radius: 2px; cursor: none;
       transition: background 0.2s, box-shadow 0.2s;
     }
-    .btn-primary:hover { background: #e0ba70; box-shadow: 0 0 24px rgba(212,168,90,0.2); }
+    .btn-primary:hover { background: var(--accent-hover); box-shadow: 0 0 24px rgba(var(--accent-rgb),0.2); }
     .btn-ghost {
       font-size: 0.75rem; color: var(--muted); text-decoration: none;
       letter-spacing: 0.06em; text-transform: uppercase;
@@ -165,6 +214,7 @@
     }
     .btn-ghost:hover { color: var(--accent); border-color: var(--accent); }
     .hero-right { padding-top: 5rem; opacity: 0; animation: fadeUp 0.7s 0.5s forwards; }
+    .hero-photo { width: 148px; height: 148px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border); margin-bottom: 1.75rem; }
     .stat-panel { border: 1px solid var(--border); border-radius: 3px; overflow: hidden; }
     .stat-row {
       display: flex; justify-content: space-between; align-items: center;
@@ -221,7 +271,7 @@
     .exp-item:last-child { border-bottom: none; }
     .exp-meta { padding-top: 0.15rem; }
     .exp-date { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.04em; margin-bottom: 0.4rem; }
-    .exp-type { display: inline-block; font-size: 0.6rem; color: var(--accent); border: 1px solid rgba(212,168,90,0.3); padding: 0.15rem 0.5rem; border-radius: 2px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .exp-type { display: inline-block; font-size: 0.6rem; color: var(--accent); border: 1px solid rgba(var(--accent-rgb),0.3); padding: 0.15rem 0.5rem; border-radius: 2px; letter-spacing: 0.06em; text-transform: uppercase; }
     .exp-role { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--heading); margin-bottom: 0.2rem; }
     .exp-company { font-size: 0.82rem; color: var(--text); margin-bottom: 0.5rem; }
     .exp-note { font-size: 0.7rem; color: var(--muted); font-style: italic; }
@@ -233,7 +283,7 @@
     .edu-item:last-child { border-bottom: none; }
     .edu-meta { padding-top: 0.15rem; }
     .edu-years { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.04em; margin-bottom: 0.4rem; }
-    .edu-badge { display: inline-block; font-size: 0.6rem; color: var(--accent); border: 1px solid rgba(212,168,90,0.3); padding: 0.15rem 0.5rem; border-radius: 2px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .edu-badge { display: inline-block; font-size: 0.6rem; color: var(--accent); border: 1px solid rgba(var(--accent-rgb),0.3); padding: 0.15rem 0.5rem; border-radius: 2px; letter-spacing: 0.06em; text-transform: uppercase; }
     .edu-degree { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--heading); margin-bottom: 0.2rem; }
     .edu-school { font-size: 0.82rem; color: var(--text); margin-bottom: 0.3rem; }
     .edu-location { font-size: 0.75rem; color: var(--muted); }
@@ -260,7 +310,7 @@
     .cert-name { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--heading); margin-bottom: 0.25rem; }
     .cert-issuer { font-size: 0.78rem; color: var(--muted); }
     .cert-meta { text-align: right; flex-shrink: 0; }
-    .cert-date { font-size: 0.7rem; color: var(--accent); border: 1px solid rgba(212,168,90,0.3); padding: 0.2rem 0.6rem; border-radius: 2px; letter-spacing: 0.06em; white-space: nowrap; }
+    .cert-date { font-size: 0.7rem; color: var(--accent); border: 1px solid rgba(var(--accent-rgb),0.3); padding: 0.2rem 0.6rem; border-radius: 2px; letter-spacing: 0.06em; white-space: nowrap; }
 
     /* ── ABOUT ─────────────────────────── */
     .about-grid { display: grid; grid-template-columns: 260px 1fr; gap: 5rem; align-items: start; }
@@ -403,6 +453,15 @@
     <symbol id="ico-dl" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
       <path d="M6 1v7M3.5 5.5L6 8l2.5-2.5"/><path d="M2 10h8"/>
     </symbol>
+    <!-- Sun (switch to light) -->
+    <symbol id="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="4"/>
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+    </symbol>
+    <!-- Moon (switch to dark) -->
+    <symbol id="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </symbol>
   </svg>
 
   <!-- ── NAV ── -->
@@ -418,6 +477,10 @@
       <li><a href="#contact"        data-section="contact">Contact</a></li>
     </ul>
     <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme">
+        <svg class="icon-sun" width="14" height="14"><use href="#ico-sun"/></svg>
+        <svg class="icon-moon" width="14" height="14"><use href="#ico-moon"/></svg>
+      </button>
       <a href="https://drive.google.com/file/d/1y_Jzoi7yFPWL5skX_qJyMmV3vA-QYvHI/view?usp=drive_link" download class="nav-cv">
         <svg width="11" height="11"><use href="#ico-dl"/></svg>
         Resume
@@ -441,6 +504,11 @@
       <svg width="11" height="11"><use href="#ico-dl"/></svg>
       Resume
     </a>
+    <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle light/dark theme">
+      <svg class="icon-sun" width="14" height="14"><use href="#ico-sun"/></svg>
+      <svg class="icon-moon" width="14" height="14"><use href="#ico-moon"/></svg>
+      <span>Theme</span>
+    </button>
   </div>
 
   <!-- ── HERO ── -->
@@ -457,6 +525,7 @@
       </div>
     </div>
     <div class="hero-right">
+      <img src="images/profile.jpg" alt="Siddharth Deshpande" class="hero-photo">
       <div class="stat-panel">
           <div class="stat-row">
               <span class="stat-key">Experience</span>
@@ -906,6 +975,20 @@
       ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
       requestAnimationFrame(tick);
     })();
+
+    // Theme toggle
+    function toggleTheme() {
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }
+    }
+    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+    document.getElementById('themeToggleMobile').addEventListener('click', toggleTheme);
 
     // Mobile menu
     const hamburger  = document.getElementById('hamburger');
